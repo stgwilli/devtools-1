@@ -26,7 +26,10 @@ expand do
 
   look_for_templates_in "**/*.{erb,mustache}"
 
-  glob("expansions/**/task*.rb"){|file| load file}
+  glob("expansions/**/task*.rb") do |file| 
+    puts "loading: #{file}"
+    load file
+  end
   load "expansions/#{platform}.rb"
 
   cleanup do
